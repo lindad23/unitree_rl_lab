@@ -1,5 +1,13 @@
 #!/usr/bin/env bash
 
+# 在脚本开头添加调试信息
+echo "=== 调试信息 ==="
+echo "当前目录: $(pwd)"
+echo "UNITREE_RL_LAB_PATH: $UNITREE_RL_LAB_PATH"
+echo "python_exe: $python_exe"
+echo "脚本完整路径: ${UNITREE_RL_LAB_PATH}/scripts/rsl_rl/train.py"
+echo "该文件存在: $(test -f "${UNITREE_RL_LAB_PATH}/scripts/rsl_rl/train.py" && echo '是' || echo '否')"
+
 export UNITREE_RL_LAB_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
 if ! [[ -z "${CONDA_PREFIX}" ]]; then

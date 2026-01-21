@@ -7,6 +7,6 @@
 		"ban.spellright",
 		"ms-iot.vscode-ros",
 		"ms-python.black-formatter",
-		"ms-python.flake8",
+		"ms-python.flake8",	
 	]
 }
