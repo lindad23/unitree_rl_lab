@@ -11,7 +11,7 @@ Reference: https://github.com/unitreerobotics/unitree_ros
 import os
 
 import isaaclab.sim as sim_utils
-from isaaclab.actuators import IdealPDActuatorCfg, ImplicitActuatorCfg
+from isaaclab.actuators import IdealPDActuatorCfg, ImplicitActuatorCfg, DelayedPDActuatorCfg
 from isaaclab.assets.articulation import ArticulationCfg
 from isaaclab.utils import configclass
 
@@ -418,7 +418,7 @@ UNITREE_G1_29DOF_CFG = UnitreeArticulationCfg(
         joint_vel={".*": 0.0},
     ),
     actuators={
-        "N7520-14.3": ImplicitActuatorCfg(
+        "N7520-14.3": DelayedPDActuatorCfg(
             joint_names_expr=[".*_hip_pitch_.*", ".*_hip_yaw_.*", "waist_yaw_joint"],
             effort_limit_sim=88,
             velocity_limit_sim=32.0,
@@ -431,8 +431,10 @@ UNITREE_G1_29DOF_CFG = UnitreeArticulationCfg(
                 "waist_yaw_joint": 5.0,
             },
             armature=0.01,
+            min_delay=0,
+            max_delay=4,
         ),
-        "N7520-22.5": ImplicitActuatorCfg(
+        "N7520-22.5": DelayedPDActuatorCfg(
             joint_names_expr=[".*_hip_roll_.*", ".*_knee_.*"],
             effort_limit_sim=139,
             velocity_limit_sim=20.0,
@@ -445,8 +447,10 @@ UNITREE_G1_29DOF_CFG = UnitreeArticulationCfg(
                 ".*_knee_.*": 4.0,
             },
             armature=0.01,
+            min_delay=0,
+            max_delay=4,
         ),
-        "N5020-16": ImplicitActuatorCfg(
+        "N5020-16": DelayedPDActuatorCfg(
             joint_names_expr=[
                 ".*_shoulder_.*",
                 ".*_elbow_.*",
@@ -466,14 +470,18 @@ UNITREE_G1_29DOF_CFG = UnitreeArticulationCfg(
                 "waist_.*_joint": 5.0,
             },
             armature=0.01,
+            min_delay=0,
+            max_delay=4,
         ),
-        "W4010-25": ImplicitActuatorCfg(
+        "W4010-25": DelayedPDActuatorCfg(
             joint_names_expr=[".*_wrist_pitch.*", ".*_wrist_yaw.*"],
             effort_limit_sim=5,
             velocity_limit_sim=22,
             stiffness=40.0,
             damping=1.0,
             armature=0.01,
+            min_delay=0,
+            max_delay=4,
         ),
     },
     joint_sdk_names=[
